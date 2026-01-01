@@ -38,6 +38,16 @@ app.get('/', (req, res) => {
   });
 });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
